@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TOLD YOU!</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+    /* Set a background color and height for the page */
+    body {
+      background-color: #f1f1f1;
+      height: 100vh;
+    }
+    
+    /* Style for the random letters */
+    .random-letter {
+      position: absolute;
+      font-size: 5em;
+      font-weight: bold;
+      user-select: none;
+    }
+  </style>
+  <script>
+    // Define an array of colors to use
+    const colors = ["red", "orange", "yellow", "green", "blue", "purple"];
+    // Set the interval speed (in milliseconds) for the background color change
+    const bgIntervalSpeed = 1;
+    // Set the interval speed (in milliseconds) for the random letter creation
+    const letterIntervalSpeed = 1;
+    // Function to change the background color every interval
+    setInterval(() => {
+      const colorIndex = Math.floor(Math.random() * colors.length);
+      const newColor = colors[colorIndex];
+      document.body.style.backgroundColor = newColor;
+    }, bgIntervalSpeed);
+    
+    // Function to generate a random letter and position it randomly on the screen
+    setInterval(() => {
+      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      const letterIndex = Math.floor(Math.random() * letters.length);
+      const randomLetter = letters.charAt(letterIndex);
+      const letterColorIndex = Math.floor(Math.random() * colors.length);
+      const randomColor = colors[letterColorIndex];
+      const letter = document.createElement("div");
+      letter.classList.add("random-letter");
+      letter.style.color = randomColor;
+      letter.style.top = Math.floor(Math.random() * window.innerHeight) + "px";
+      letter.style.left = Math.floor(Math.random() * window.innerWidth) + "px";
+      letter.innerHTML = randomLetter;
+      document.body.appendChild(letter);
+      setTimeout(() => {
+        letter.remove();
+      }, 50);
+    }, letterIntervalSpeed);
+  </script>
+</head>
+<body>
+  <div class="pad2">
+<a href="index.html">
+    <img src="arrow.png" alt="go back">
+  </a>
+</div>
+</body>
+</html>

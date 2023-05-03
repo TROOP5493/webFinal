@@ -1,0 +1,141 @@
+<!DOCTYPE html> <!-- Start of HTML5 document -->
+<html lang="en">
+    <head>
+        <title>Weightlifting</title> <!-- Sets the title of the document -->
+        <meta charset="utf-8"> <!-- Sets the character encoding for the document -->
+        <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Sets the viewport to control the page's dimensions and scaling on different devices -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> <!-- Adds the Bootstrap CSS file -->
+        <link rel="stylesheet" type="text/css" href="style.css"> <!-- Adds a custom CSS file -->
+    </head>
+
+    <body>
+        <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> <!-- Adds the jQuery library -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script> <!-- Adds the Bootstrap JavaScript file -->
+        <script src="script.js"></script> <!-- Links to java script file -->
+<body>
+ <nav class="navbar navbar-expand-md">
+  <!-- This is the logo section of the navbar -->
+  <div class="navbar-brand">
+    <a onclick="changeColors()">
+      <img src="logo2.png" alt="Logo">
+    </a>
+  </div>
+
+  <!-- This is the collapse button for the menu on mobile -->
+  <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- This is the menu section of the navbar -->
+  <div class="collapse navbar-collapse" id="main-navigation">
+    <ul class="navbar-nav mr-auto">
+      <!-- This is the Home link in the nav bar -->
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">Home</a>
+      </li>
+      <!-- This is the Contact link in the nav bar -->
+      <li class="nav-item">
+        <a class="nav-link" href="contact.html">Contact</a>
+      </li>
+      <!-- This is the Fitness Influencer link in the nav bar -->
+      <li class="nav-item">
+        <a class="nav-link" href="iframe.html">Fitness Influencer</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <!-- This is the CLICK AT OWN RISK link in the nav bar -->
+      <li class="nav-item ml-auto">
+        <a class="nav-link text-right" href="warning.html">CLICK AT OWN RISK</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<header class="custom-header2 container-fluid header">
+  <!-- A header element with custom style -->
+  <div class="overlay"></div>
+  <!-- An overlay div to create a background effect -->
+  <div class="container text-center">
+    <div class="pad">
+      <a href="aboutme.html">
+        <img src="arrow.png" alt="go back">
+        <!-- An image to link back to the aboutme page -->
+      </a>
+      <h1>My Bench Max</h1>
+      <!-- A heading to indicate the content of the page -->
+      <video controls>
+        <source src="bench.mp4" type="video/mp4">
+        <!-- A video element to display the bench press video with controls -->
+      </video>
+      <h1> 335LBS </h1>
+      <!-- A heading to indicate the weight of the bench press max -->
+    </div>
+  </div>
+</header>
+
+</body>
+<!-- This is a page footer, which provides additional information and contact details -->
+<footer class="page-footer">
+
+  <!-- This container-fluid class ensures the footer spans the full width of the page -->
+  <div class="container-fluid">
+
+    <!-- This row class arranges the footer content in a row -->
+    <div class="row">
+
+      <!-- This column contains contact information -->
+      <div class="col-lg-4 col-md-12 col-sm-12 text-center">
+        <h6 class="text-uppercase font-weight-bold mb-4">Contact</h6>
+        <address>
+          <span>401 Peregrine Ct.</span><br>
+          <span>Winfield</span>, <span>Missouri</span>
+        </address>
+
+        <!-- This link directs visitors to a contact page -->
+        <a href="contact.html">
+          <p> Contact Page </p>
+        </a>
+
+        <!-- This link provides a phone number -->
+        <a href="tel:+16365152626">
+          <p>+1 (636)-515-2626</p>
+        </a>
+
+        <!-- This link provides an email address -->
+        <a href="mailto:trupianologan@gmail.com">
+          <p>trupianologan@gmail.com</p>
+        </a>
+      </div>
+
+      <!-- This column provides additional information about the author -->
+      <div class="col-lg-4 col-md-6 col-sm-12 text-center">
+        <h6 class="text-uppercase font-weight-bold">Additional Information</h6>
+
+        <!-- This paragraph describes the author's weightlifting experience -->
+        <p>I have been lifting weights since my sophomore year of high school. I have taken some breaks through the years, but the last two years I have been very consistent.</p>
+
+        <!-- This paragraph describes the author's academic and athletic pursuits -->
+        <p>I attend Hannibal La-Grange University, where I am majoring in Computer Science, and I also throw and sprint for the track team here.</p>
+      </div>
+
+      <!-- This column contains a graphic logo -->
+      <div class="col-lg-4 col-md-6 col-sm-12 text-center">
+        <img src="graphic.png" alt="Logo">
+      </div>
+
+    </div> <!-- end of row -->
+
+  </div> <!-- end of container-fluid -->
+
+  <!-- This horizontal line separates the footer content from the copyright notice -->
+  <hr>
+
+  <div class="row">
+
+    <!-- This column displays the copyright notice -->
+    <div class="col-12 text-center">
+      <p class="mb-0">© https://troop5493.github.io/Final/</p>
+    </div>
+
+  </div> <!-- end of row -->
+
+</footer> <!-- end of page-footer -->
