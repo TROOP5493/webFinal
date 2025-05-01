@@ -27,8 +27,9 @@
 
         // Listen for auth state changes
         onAuthStateChanged(auth, user => {
-            if (!user) {
-                // If user is not logged in, redirect to the login page
+            // Only redirect if the user is not authenticated
+            if (!user && window.location.pathname !== '/login.html') {
+                // Redirect to login page only if not logged in and not already on the login page
                 window.location.href = "login.html";
             }
         });
