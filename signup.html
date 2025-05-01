@@ -3,30 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sign Up - Weightlifting</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
-</head>
-<body>
-    <div class="container">
-        <h2 class="mt-5">Sign Up</h2>
-        <form id="signupForm">
-            <div class="form-group">
-                <label for="email">Email address:</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" placeholder="Password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Sign Up</button>
-        </form>
-        <p class="mt-3">Already have an account? <a href="login.html">Log in</a></p>
-    </div>
+    <title>Weightlifting - Sign Up</title>
+    <link rel="stylesheet" href="style.css"> <!-- Include your external CSS here -->
+    
+    <!-- Firebase SDK Scripts with type="module" -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+        import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
 
-    <script>
-        // Firebase initialization
         const firebaseConfig = {
             apiKey: "AIzaSyDWxrVbi3jUFiDMnlVFdgDRNZlbnFU2qo4",
             authDomain: "webfinal-fbc7c.firebaseapp.com",
@@ -36,25 +20,68 @@
             appId: "1:1083380210861:web:0c7741cf8cb79484d13a24",
             measurementId: "G-HLM6E7R572"
         };
-        firebase.initializeApp(firebaseConfig);
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Check if the user is logged in, and if so, redirect to the homepage (index.html)
+        onAuthStateChanged(auth, user => {
+            if (user) {
+                console.log('User already logged in, redirecting...');
+                // Redirect logged-in user to the homepage
+                window.location.href = 'index.html';
+            }
+        });
 
         // Handle sign-up form submission
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
+        document.getElementById('signupForm')?.addEventListener('submit', function(e) {
             e.preventDefault();
 
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
-            firebase.auth().createUserWithEmailAndPassword(email, password)
+            createUserWithEmailAndPassword(auth, email, password)
                 .then(userCredential => {
-                    // Signed up successfully, redirect to index.html
-                    window.location.href = "index.html";
+                    console.log('User signed up:', userCredential.user);
+                    window.location.href = "index.html"; // Redirect to the main page after signup
                 })
                 .catch(error => {
-                    const errorMessage = error.message;
-                    alert(errorMessage); // Display error message if signup fails
+                    console.error('Sign-up failed:', error.message);
+                    alert(error.message);
                 });
         });
     </script>
+</head>
+<body>
+    <div class="custom-header">
+        <div class="overlay"></div>
+        <div class="description">
+            <h1>Sign Up for Weightlifting</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+        
+        <div class="mt-3">
+            <p>Already have an account? <a href="login.html" class="btn btn-secondary">Login here</a></p>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <div class="container">
+            <p>© 2025 Weightlifting Gym. All rights reserved.</p>
+        </div>
+    </div>
 </body>
 </html>
