@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="my-4">Login</h2>
+
+      <!-- Login Form -->
+      <input type="email" id="email" class="form-control" placeholder="Email">
+      <input type="password" id="password" class="form-control mt-2" placeholder="Password">
+      <button onclick="login()" class="btn btn-primary mt-2">Login</button>
+      <button onclick="signup()" class="btn btn-secondary mt-2">Sign Up</button>
+
+      <p id="error-message" class="text-danger mt-2"></p>
+    </div>
+
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyDWxrVbi3jUFiDMnlVFdgDRNZlbnFU2qo4",
+        authDomain: "webfinal-fbc7c.firebaseapp.com",
+        projectId: "webfinal-fbc7c",
+        storageBucket: "webfinal-fbc7c.firebasestorage.app",
+        messagingSenderId: "1083380210861",
+        appId: "1:1083380210861:web:0c7741cf8cb79484d13a24",
+        measurementId: "G-HLM6E7R572"
+      };
+      firebase.initializeApp(firebaseConfig);
+
+      function login() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        firebase.auth().signInWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            // Redirect to index.html after successful login
+            window.location.href = "index.html";
+          })
+          .catch((error) => {
+            document.getElementById("error-message").innerText = "Login failed: " + error.message;
+          });
+      }
+
+      function signup() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            // Redirect to index.html after successful sign up
+            window.location.href = "index.html";
+          })
+          .catch((error) => {
+            document.getElementById("error-message").innerText = "Sign up failed: " + error.message;
+          });
+      }
+    </script>
+  </body>
+</html>
