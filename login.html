@@ -26,25 +26,30 @@
         const auth = getAuth(app);
 
         // Listen for auth state changes
+        let redirectInProgress = false; // Flag to prevent multiple redirects
+
         onAuthStateChanged(auth, user => {
-            // Prevent redirection if the user is already on the login page
-            if (!user && window.location.pathname !== '/login.html') {
-                // Redirect to login page if user is not logged in
-                window.location.href = "login.html";
+            console.log('Auth state changed:', user); // Debugging line
+            if (!user) {
+                if (window.location.pathname !== '/login.html' && !redirectInProgress) {
+                    redirectInProgress = true;
+                    console.log('Redirecting to login...');
+                    window.location.href = "login.html";
+                }
             }
         });
 
         // Handle logout
         function logout() {
+            console.log('Logging out...'); // Debugging line
             signOut(auth)
                 .then(() => {
-                    // Add a slight delay before redirecting
+                    console.log('Logout successful'); // Debugging line
                     setTimeout(() => {
                         window.location.replace("login.html"); // Replaces current page in history
                     }, 500); // 500ms delay
                 })
                 .catch(error => {
-                    // Error handling
                     console.error('Logout failed:', error.message);
                     alert(error.message);
                 });
@@ -59,12 +64,10 @@
 
             signInWithEmailAndPassword(auth, email, password)
                 .then(userCredential => {
-                    // Successful login
-                    console.log('Logged in:', userCredential.user);
+                    console.log('Logged in:', userCredential.user); // Debugging line
                     window.location.href = "index.html"; // Redirect to the main page
                 })
                 .catch(error => {
-                    // Error handling
                     console.error('Login failed:', error.message);
                     alert(error.message);
                 });
