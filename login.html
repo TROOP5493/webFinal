@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Weightlifting</title>
+    <title>Weightlifting - Login</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
     
     <!-- Firebase SDK Scripts with type="module" -->
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-        import { getAuth, signOut, onAuthStateChanged, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
 
         const firebaseConfig = {
             apiKey: "AIzaSyDWxrVbi3jUFiDMnlVFdgDRNZlbnFU2qo4",
@@ -24,38 +24,14 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // Flag to prevent multiple redirects
-        let redirectInProgress = false;
-
-        // Listen for auth state changes
+        // Check if the user is logged in, and if so, redirect to the homepage (index.html)
         onAuthStateChanged(auth, user => {
-            console.log('Auth state changed:', user); // Debugging line
-            // Check if user is logged in and not already on login.html
-            if (!user && window.location.pathname !== '/login.html' && !redirectInProgress) {
-                redirectInProgress = true;
-                console.log('Redirecting to login...');
-                // Introduce a small delay before redirecting to prevent page flickering
-                setTimeout(() => {
-                    window.location.href = "login.html";
-                }, 500);
+            if (user) {
+                console.log('User already logged in, redirecting...');
+                // Redirect logged-in user to the homepage
+                window.location.href = 'index.html';
             }
         });
-
-        // Handle logout
-        function logout() {
-            console.log('Logging out...'); // Debugging line
-            signOut(auth)
-                .then(() => {
-                    console.log('Logout successful'); // Debugging line
-                    setTimeout(() => {
-                        window.location.replace("login.html"); // Replaces current page in history
-                    }, 500); // 500ms delay
-                })
-                .catch(error => {
-                    console.error('Logout failed:', error.message);
-                    alert(error.message);
-                });
-        }
 
         // Handle login form submission
         document.getElementById('loginForm')?.addEventListener('submit', function(e) {
@@ -66,7 +42,7 @@
 
             signInWithEmailAndPassword(auth, email, password)
                 .then(userCredential => {
-                    console.log('Logged in:', userCredential.user); // Debugging line
+                    console.log('Logged in:', userCredential.user);
                     window.location.href = "index.html"; // Redirect to the main page
                 })
                 .catch(error => {
@@ -78,11 +54,18 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Weightlifting</h1>
-        <p>This is the main content.</p>
-        
-        <!-- Logout Button -->
-        <button class="btn btn-danger" onclick="logout()">Logout</button>
+        <h1>Login to Weightlifting</h1>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
     </div>
 </body>
 </html>
